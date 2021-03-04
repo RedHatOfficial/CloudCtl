@@ -3,15 +3,11 @@ DevOps Services & Utilities Container [Pod] Infrastructure as Code [(IaC)] toolk
 ## Problem
 Infrastructure deployment requires a wide set of user enablement & automation 
 utilities, network services, and Infrastructure as Code resources. These can 
-become difficult & inconsistent to maintain and support.
+become difficult & inconsistent to architecht, maintain, and support.
 ## Solution
-CloudCtl provides a [Podman] container [Pod] based "Point of Origin" 
-Infrastructure as Code [(IaC)] toolkit for deployment operations tasks 
-with core features delivered via [UBI8] based [Konductor] as primary 
-orchestration base capable of dynamically allocating additional pod 
-contained services. All existing containerized services are delivered
-as UBI & UBI Minimal containerized services. When bundled for airgap usage
-the total payload to carry hovers around ~1.5G.
+CloudCtl provides a [Podman] "Point of Origin" [Pod] to augment infrastructure
+services with [UBI8] containerized, and [(IaC)] driven deployment dependencies.
+
 #### Core Features
   - Extensable
   - Portable 
@@ -22,10 +18,8 @@ the total payload to carry hovers around ~1.5G.
   - Airgap Supported (with Koffer collector)
   - Behaves the same whether connected or disconnected from the internet
 #### Supported Distributions
-  - [Fedora] 32+
-  - [CentOS] 8.0+
   - [RedHat] 8.0+
-  - [Ubuntu] 20.04+
+  - [RedHat CoreOS] 4.7+
 #### Supported Services
   - Konductor User Space Container
   - Ansible Runner Service API
@@ -96,15 +90,13 @@ sudo podman ps --all
 1efcd0fafb40  Up 18 hours ago    registry
 3598bab7c7ed  Up 18 hours ago    runner
 11305c527abe  Up 18 hours ago    konductor
-fbf274723577  Up 18 hours ago    c7fc137831c8-infra
 ```
 ----------------------------------------------------------------------------------
 ####  Cleanup
 ```
 podman pod rm --force cloudctl
 podman image prune --all
-rm -rf /root/platform /tmp/konductor
-rm -rf /root/cloudctl
+rm -rf /root/{cloudctl,platform} /tmp/konductor
 ```
 [Pod]:https://kubernetes.io/docs/concepts/workloads/pods/pod
 [UBI8]:https://www.redhat.com/en/blog/introducing-red-hat-universal-base-image
